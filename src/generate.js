@@ -3,8 +3,9 @@ import {
   readFile,
   readFilesFromDir,
 } from './lib/file.js';
+import { parseTeamsJson } from './lib/parse.js';
 
-const INPUT_DIR = './data';
+const INPUT_DIR = '../data';
 const OUTPUT_DIR = './dist';
 
 async function main() {
@@ -17,8 +18,12 @@ async function main() {
       continue;
     }
     const fileContents = await readFile(file);
+    const indexData = parseTeamsJson(fileContents);
 
-    console.log(file, fileContents?.length);
+    //console.log(typeof indexData);
+    console.log('object :>> ', Object.keys(indexData));
+
+    //console.log(file, fileContents?.length);
   }
 }
 
