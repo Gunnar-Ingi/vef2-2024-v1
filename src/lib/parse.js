@@ -4,22 +4,14 @@ export function parseTeamsJson(data) {
 
   try {
     parsed = JSON.parse(data);
-  } catch (e) {
+   } catch (e) {
   console.error('error parsing JSON', e);
-  }
-  /*
-  const items = [];
-  for (const item of parsed) {
-    if (!item.home || !item.away) {
-      console.warn('missing required properties in JSON');
-    } else {
-      items.push({
-        home: item.home,
-        away: item.away,
-      });
-    }
-  }
-  */
+   }
+   // This logs date and games
+   // Maybe bring indexData.games
+   // and indexData.date
+   // in here to parse????
+  // console.log('parsed :>> ', parsed);
   return parsed;
 
 }
