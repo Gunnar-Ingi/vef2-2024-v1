@@ -6,11 +6,12 @@ import {
   readFilesFromDir,
 } from './lib/file.js';
 import { parseTeamsJson } from './lib/parse.js';
-import { indexTemplate } from './lib/html.js';
+// import { indexTemplate } from './lib/html.js';
+import { template } from './lib/html.js';
 
 
 
-const INPUT_DIR = '../data';
+const INPUT_DIR = './data';
 const OUTPUT_DIR = './dist';
 
 async function main() {
@@ -27,7 +28,7 @@ async function main() {
 
     // console.log(typeof indexData);
     // console.log('object :>> ', Object.keys(indexData));
-     console.log('object :>> ', Object.entries(indexData.games));
+     // console.log('object :>> ', Object.entries(indexData.games));
     /*
     for (let key in indexData.games) {
       console.log('key :>> ', key);
@@ -40,7 +41,7 @@ async function main() {
     // console.log(file, fileContents?.length);
 
     // TODO or something, maybe use JSON stringify for data rendering.
-    await writeFile(join(OUTPUT_DIR, 'index.html'), indexTemplate(indexData), {
+    await writeFile(join(OUTPUT_DIR, 'index.html'), template('Boltaíþróttadeild',indexData), {
       flag: 'w+',
     });
   }
