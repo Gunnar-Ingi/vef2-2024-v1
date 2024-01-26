@@ -1,23 +1,27 @@
 export function parseTeamsJson(data) {
 
+  if (!data) {
+    console.log('NO DATA DETECTED');
+    return [];
+  }
+
   let parsed;
 
   try {
     parsed = JSON.parse(data);
    } catch (e) {
   console.error('error parsing JSON', e);
+  return [];
    }
 
-   console.log('parsed :>> ', typeof parsed);
-
-   if(parsed == null) {
+   if(parsed === null || parsed === undefined) {
     console.log('IT IS EMPTY');
-    return [];
+    return 12;
    }
 
-   if(parsed.games == null) {
-    console.log('IT IS EMPTY');
-    return [];
+   if(parsed.games === null || parsed.games === undefined) {
+    console.log('NO GAMES!');
+    return 12;
    }
 
    // Could use nulish coalescing assignment
@@ -55,6 +59,19 @@ export function parseTeamsJson(data) {
    // in here to parse????
   // console.log('parsed :>> ', parsed);
 
-   console.log('parsed.games :>> ', parsed.games);
   return parsed;
+}
+
+export function parseDateJson(data) {
+  if (!data) {
+    console.log('NO DATA DETECTED');
+    return [];
+  }
+
+  if(data.date === null || data.date === undefined) {
+    console.log('NO TIME!');
+    return 'No Date';
+   }
+
+  return data.date;
 }

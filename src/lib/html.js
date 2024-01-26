@@ -1,5 +1,3 @@
-// TODO: RENDER THE JSON DATA IN HTML.
-
 
 /**
  * Generate a HTML page with title and content.
@@ -17,26 +15,31 @@ export function template(title, content) {
     <link rel="stylesheet" href="./public/styles.css">
     <script type="module" src="./public/scripts.js"></script>
   </head>
-  <body>${
-    content.games // todo: make it show up in HTML.
+  <body> <h1>This is the thing<h2>${
+    content // todo: make it show up in HTML.
   }</body>
 </html>`;
 }
 
 
+
 /**
  * Generate a HTML string for the index page.
- * @param {Array<IndexFile>} workObj list of dates for games
+ * @param {Array} gameevents list of dates for games
  * @returns {string} HTML string representing the index page
  */
 
-export function indexTemplate(workObj) {
+export function indexTemplate(gameevents) {
   const index = `
     <h1>Leikir</h1>
     <h2>Deildir</h2>
-    <ul>
-
-    </ul>`;
+    <h3>
+        ${
+          gameevents.map((item) =>
+          `<li><${item}</li>\n`
+          )
+          .join('')}
+    </h3>`;
   return template('Leikir', index);
 }
 
