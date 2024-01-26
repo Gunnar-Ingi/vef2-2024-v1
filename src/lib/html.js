@@ -7,7 +7,7 @@
  * @returns Full HTML page
  */
 export function template(title, content) {
-  return `<!doctype html>
+  return /* html */`<!doctype html>
 <html lang="is">
   <head>
     <meta charset="utf-8">
@@ -16,7 +16,7 @@ export function template(title, content) {
     <script type="module" src="./public/scripts.js"></script>
   </head>
   <body> <h1>This is the thing<h2>${
-    content // todo: make it show up in HTML.
+    content
   }</body>
 </html>`;
 }
@@ -30,16 +30,45 @@ export function template(title, content) {
  */
 
 export function indexTemplate(gameevents) {
-  const index = `
-    <h1>Leikir</h1>
+  const title = 'Boltadeildin-forsíða!'
+  const index = /* html */`
+  <section>
+    <h1>Velkomin í Boltadeildina!</h1>
     <h2>Deildir</h2>
+    <ul>
+      <li><a href="leikir.html">Seinustu leikir</a></li>
+      <li><a href="stada.html">Staðan í deildinni</a></li>
+    </ul>
+
     <h3>
         ${
           gameevents.map((item) =>
           `<li><${item}</li>\n`
           )
           .join('')}
-    </h3>`;
-  return template('Leikir', index);
+    </h3>
+  </section>`;
+  return template(title, index);
 }
 
+export function stadaTemplate(standings) {
+  const title = 'Boltadeildin-staðan!'
+  const standingHtml = standings.toString();
+  const body = /* html */`
+  <section>
+    <h1>Staðan í deildinni!</h1>
+    ${standingHtml}
+  </section>`;
+  return template(title, body);
+}
+
+export function leikirTemplate(games) {
+  const title = 'Boltadeildin-leikir!'
+  const gamesHtml = games.toString();
+  const body = /* html */`
+  <section>
+    <h1>Leikir seinust vikna</h1>
+    ${gamesHtml}
+  </section>`;
+  return template(title, body);
+}

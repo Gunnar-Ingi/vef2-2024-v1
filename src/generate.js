@@ -7,7 +7,8 @@ import {
 } from './lib/file.js';
 import { parseDateJson, parseTeamsJson } from './lib/parse.js';
 // import { indexTemplate } from './lib/html.js';
-import { indexTemplate, template } from './lib/html.js';
+import { indexTemplate, leikirTemplate, stadaTemplate } from './lib/html.js';
+import { calculateStandings } from './lib/score.js';
 
 
 
@@ -21,6 +22,8 @@ async function main() {
 
   const gameDates = [];
 
+  const data = [];
+
   for await (const file of files) {
     if (file.indexOf('gameday') < 0) {
       continue;
@@ -30,6 +33,8 @@ async function main() {
     const indexData = parseTeamsJson(fileContents);
 
     const dateData = parseDateJson(indexData);
+
+    data.push(indexData);
 
     // console.log(typeof indexData);
     // console.log('object :>> ', Object.keys(indexData));
@@ -46,11 +51,24 @@ async function main() {
     console.log('dateData :>> ', typeof dateData);
 
     gameDates.push(dateData);
-     }
-     console.log('gameDates :>> ', gameDates);
+    }
+
+
+    const calculatedStandings = calculateStandings(data);
+
+     console.log('gameDates :>> ', data);
+
   await writeFile(join(OUTPUT_DIR, 'index.html'), indexTemplate(gameDates), {
      flag: 'w+',
   });
+
+  const stadaHTML = stadaTemplate(calculatedStandings);
+  const stadaFilename = join(OUTPUT_DIR, 'stada.html');
+  await writeFile(stadaFilename, stadaHTML);
+
+  const leikirHTML = leikirTemplate(data);
+  const leikirFilename = join(OUTPUT_DIR, 'leikir.html');
+  await writeFile(leikirFilename, leikirHTML);
 
 }
 
