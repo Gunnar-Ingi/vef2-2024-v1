@@ -5,7 +5,7 @@ import {
   readFile,
   readFilesFromDir,
 } from './lib/file.js';
-import { parseDateJson, parseGamesJson, parseTeamsJson } from './lib/parse.js';
+import { parseDateJson, parseGames, parseGamesJson, parseTeamsJson } from './lib/parse.js';
 // import { indexTemplate } from './lib/html.js';
 import { indexTemplate, leikirTemplate, stadaTemplate } from './lib/html.js';
 import { calculateStandings } from './lib/score.js';
@@ -30,16 +30,19 @@ async function main() {
     }
     const fileContents = await readFile(file);
 
-    const indexData = parseTeamsJson(fileContents);
-
-    const dateData = parseDateJson(indexData);
-
-    const gameData = parseGamesJson(indexData);
-
     console.info('parsing:', file);
     if (!fileContents) {
       continue;
     }
+
+    const indexData = parseTeamsJson(fileContents);
+
+    const dateData = parseDateJson(indexData);
+
+    // const gameData = parseGamesJson(indexData);
+
+    const gameData = parseGames(fileContents);
+
 
     gameList.push(gameData);
 

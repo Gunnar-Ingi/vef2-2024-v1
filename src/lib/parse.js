@@ -58,6 +58,39 @@ export function parseGamesJson(data) {
   return data.games;
 }
 
+/**
+ * Takes in gameday data and throws out
+ * illegal data, returns normalized form.
+ * @param {string} data read from disk
+ * @returns {null | Array<string>} data in better format
+ */
+export function parseGames(data) {
+  let parsed;
+  try {
+    parsed = JSON.parse(data);
+  } catch (e) {
+    console.error('invalid data', e);
+    return null;
+  }
+
+  if (!parsed) {
+    console.warn('parsed data is not object');
+    return null;
+  }
+
+  if (!parsed.games) {
+    console.warn('missing games array');
+    return null;
+  }
+
+  if (!parsed.date) {
+    console.warn('missing date string');
+    return null;
+  }
+
+  return parsed;
+}
+
 export function parseDateJson(data) {
   if (!data) {
     console.log('NO DATA DETECTED');
