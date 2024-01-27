@@ -43,7 +43,7 @@ export function indexTemplate(gameevents) {
     <h3>
         ${
           gameevents.map((item) =>
-          `<li><${item}</li>\n`
+          `<li>${item}</li>\n`
           )
           .join('')}
     </h3>
@@ -80,7 +80,11 @@ export function leikirTemplate(content) {
   <section>
     <h1>Leikir seinust vikna</h1>
       ${gamesHtml[0][0].home.name}
-      ${gamesHtml[0][0].home.score}
+      ${
+          gamesHtml[0].map((item) =>
+          `<li>${item.home.name} ${item.home.score}</li>\n`
+          )
+          .join('')}
   </section>`;
   return template(title, body);
 }
