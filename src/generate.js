@@ -5,7 +5,7 @@ import {
   readFile,
   readFilesFromDir,
 } from './lib/file.js';
-import { parseDateJson, parseTeamsJson } from './lib/parse.js';
+import { parseDateJson, parseGamesJson, parseTeamsJson } from './lib/parse.js';
 // import { indexTemplate } from './lib/html.js';
 import { indexTemplate, leikirTemplate, stadaTemplate } from './lib/html.js';
 import { calculateStandings } from './lib/score.js';
@@ -22,7 +22,7 @@ async function main() {
 
   const gameDates = [];
 
-  const data = [];
+  const gameList = [];
 
   for await (const file of files) {
     if (file.indexOf('gameday') < 0) {
@@ -34,29 +34,22 @@ async function main() {
 
     const dateData = parseDateJson(indexData);
 
-    data.push(indexData);
+    const gameData = parseGamesJson(indexData);
 
-    // console.log(typeof indexData);
-    // console.log('object :>> ', Object.keys(indexData));
-     // console.log('object :>> ', Object.entries(indexData.games));
-    /*
-    for (let key in indexData.games) {
-      console.log('key :>> ', key);
-      console.log('indexData.games[key] :>> ', indexData.games[key]);
-      console.log('indexData.games[key] :>> ', indexData.games[key].home);
-      console.log('indexData.games[key] :>> ', indexData.games[key].away);
+    console.info('parsing:', file);
+    if (!fileContents) {
+      continue;
     }
-    */
-    // console.log(file, fileContents?.length);
-    console.log('dateData :>> ', typeof dateData);
+
+    gameList.push(gameData);
 
     gameDates.push(dateData);
     }
 
 
-    const calculatedStandings = calculateStandings(data);
+     const calculatedStandings = 'calculateStandings(data)';
 
-     console.log('gameDates :>> ', data);
+     // console.log('gameDates :>> ', data);
 
   await writeFile(join(OUTPUT_DIR, 'index.html'), indexTemplate(gameDates), {
      flag: 'w+',
@@ -66,7 +59,7 @@ async function main() {
   const stadaFilename = join(OUTPUT_DIR, 'stada.html');
   await writeFile(stadaFilename, stadaHTML);
 
-  const leikirHTML = leikirTemplate(data);
+  const leikirHTML = leikirTemplate(gameList);
   const leikirFilename = join(OUTPUT_DIR, 'leikir.html');
   await writeFile(leikirFilename, leikirHTML);
 

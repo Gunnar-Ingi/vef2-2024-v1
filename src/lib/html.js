@@ -64,11 +64,16 @@ export function stadaTemplate(standings) {
 
 export function leikirTemplate(games) {
   const title = 'Boltadeildin-leikir!'
-  const gamesHtml = games.toString();
+  const gamesHtml = games;
   const body = /* html */`
   <section>
     <h1>Leikir seinust vikna</h1>
     ${gamesHtml}
+    ${
+          games.map((item) =>
+          `<li><${item}</li>\n`
+          )
+          .join('')}
   </section>`;
   return template(title, body);
 }
