@@ -5,7 +5,7 @@ import {
   readFile,
   readFilesFromDir,
 } from './lib/file.js';
-import { parseDateJson, parseGames, parseGamesJson, parseTeamsJson } from './lib/parse.js';
+import { parseDateJson, parseGames, parseTeamsJson } from './lib/parse.js';
 // import { indexTemplate } from './lib/html.js';
 import { indexTemplate, leikirTemplate, stadaTemplate } from './lib/html.js';
 import { calculateStandings } from './lib/score.js';
@@ -30,29 +30,28 @@ async function main() {
     }
     const fileContents = await readFile(file);
 
-    console.info('parsing:', file);
     if (!fileContents) {
       continue;
     }
 
-    const indexData = parseTeamsJson(fileContents);
+    const indexData = parseGames(fileContents);
 
     const dateData = parseDateJson(indexData);
 
-    // const gameData = parseGamesJson(indexData);
+    const gamedresult = indexData.games;
 
-    const gameData = parseGames(fileContents);
-
-
-    gameList.push(gameData);
-
-    gameDates.push(dateData);
+    if (gamedresult !== undefined){
+      gameList.push(gamedresult);
     }
 
+    if (dateData !== undefined){
+      gameDates.push(dateData);
+    }
 
-     const calculatedStandings = 'calculateStandings(data)';
+    }
 
-     // console.log('gameDates :>> ', data);
+      const calculatedStandings = 'calculateStandings(data)';
+
 
   await writeFile(join(OUTPUT_DIR, 'index.html'), indexTemplate(gameDates), {
      flag: 'w+',

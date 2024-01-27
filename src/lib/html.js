@@ -62,18 +62,25 @@ export function stadaTemplate(standings) {
   return template(title, body);
 }
 
-export function leikirTemplate(games) {
+/**
+ *
+ * @param {Array} content list of games
+ * @returns HTML string representing the game page.
+ */
+export function leikirTemplate(content) {
   const title = 'Boltadeildin-leikir!'
-  const gamesHtml = games;
+  const gamesHtml = content;
+  console.warn('THE THINGS', typeof gamesHtml[0]);
+  // list of games for one date
+  console.warn('THE THINGS', Object.getOwnPropertyNames(gamesHtml[0]));
+  // Selects one of the games, home and away become available.
+  console.warn('THE THINGS', Object.getOwnPropertyNames(gamesHtml[0][0]));
+
   const body = /* html */`
   <section>
     <h1>Leikir seinust vikna</h1>
-    ${gamesHtml}
-    ${
-          games.map((item) =>
-          `<li><${item}</li>\n`
-          )
-          .join('')}
+      ${gamesHtml[0][0].home.name}
+      ${gamesHtml[0][0].home.score}
   </section>`;
   return template(title, body);
 }
