@@ -79,12 +79,14 @@ export function leikirTemplate(content) {
   const body = /* html */`
   <section>
     <h1>Leikir seinust vikna</h1>
-      ${gamesHtml[0][0].home.name}
+     <ul>
       ${
-          gamesHtml[0].map((item) =>
+          gamesHtml.map((nested) => nested.map((item) =>
           `<li>${item.home.name} ${item.home.score}</li>\n`
+           )
           )
           .join('')}
+      </ul>
   </section>`;
   return template(title, body);
 }

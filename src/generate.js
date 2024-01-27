@@ -50,6 +50,14 @@ async function main() {
 
     }
 
+    /* small graveyard
+          ${
+          gamesHtml[0].map((item) =>
+          `<li>${item.home.name} ${item.home.score}</li>\n`
+          )
+          .join('')}
+    */
+
       const calculatedStandings = 'calculateStandings(data)';
 
 
