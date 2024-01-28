@@ -1,7 +1,7 @@
 export function parseTeamsJson(data) {
 
   if (!data) {
-    console.log('NO DATA DETECTED');
+    console.warn('NO DATA DETECTED');
     return [];
   }
 
@@ -52,7 +52,7 @@ export function parseGames(data) {
 
 export function parseDateJson(data) {
   if (!data) {
-    console.log('NO DATA DETECTED');
+    console.warn('NO DATA DETECTED');
     return [];
   }
 

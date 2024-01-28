@@ -69,22 +69,27 @@ export function stadaTemplate(standings) {
  */
 export function leikirTemplate(content) {
   const title = 'Boltadeildin-leikir!'
-  const gamesHtml = content;
-  console.warn('THE THINGS', typeof gamesHtml[0]);
-  // list of games for one date
-  console.warn('THE THINGS', Object.getOwnPropertyNames(gamesHtml[0]));
-  // Selects one of the games, home and away become available.
-  console.warn('THE THINGS', Object.getOwnPropertyNames(gamesHtml[0][0]));
+  // const gamesHtml = content;
+  const gameIndex = content;
+  /*
+  console.warn(typeof gamesHtml);
+  console.warn(Object.getOwnPropertyNames(gamesHtml));
+  console.warn(Object.getOwnPropertyNames(gamesHtml[0].games));
+  console.warn(typeof gamesHtml[0].games);
+  */
 
   const body = /* html */`
   <section>
-    <h1>Leikir seinust vikna</h1>
+    <h1>Leikir seinustu vikna</h1>
      <ul>
       ${
-          gamesHtml.map((nested) => nested.map((item) =>
-          `<li>${item.home.name} ${item.home.score}</li>\n`
+          gameIndex
+          .map((item) =>
+          `<p>results:<p>\n
+           <li>${item.date}</li>\n
+           <li>${item.games.map((inner) => `<li>${Object.values(inner.home)} ${Object.values(inner.away)}</li>\n`).join('')}</li>\n
+           `
            )
-          )
           .join('')}
       </ul>
   </section>`;

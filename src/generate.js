@@ -38,9 +38,9 @@ async function main() {
 
     const dateData = parseDateJson(indexData);
 
-    const gamedresult = indexData.games;
+    const gamedresult = indexData;
 
-    if (gamedresult !== undefined){
+    if (gamedresult.games !== undefined){
       gameList.push(gamedresult);
     }
 
