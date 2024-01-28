@@ -61,7 +61,7 @@ async function main() {
       const calculatedStandings = 'calculateStandings(data)';
 
 
-  await writeFile(join(OUTPUT_DIR, 'index.html'), indexTemplate(gameDates), {
+  await writeFile(join(OUTPUT_DIR, 'index.html'), indexTemplate(), {
      flag: 'w+',
   });
 

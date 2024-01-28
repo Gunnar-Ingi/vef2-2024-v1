@@ -15,7 +15,7 @@ export function template(title, content) {
     <link rel="stylesheet" href="./public/styles.css">
     <script type="module" src="./public/scripts.js"></script>
   </head>
-  <body> <h1>This is the thing<h2>${
+  <body> <h1>${title}<h2>${
     content
   }</body>
 </html>`;
@@ -29,7 +29,7 @@ export function template(title, content) {
  * @returns {string} HTML string representing the index page
  */
 
-export function indexTemplate(gameevents) {
+export function indexTemplate() {
   const title = 'Boltadeildin-forsíða!'
   const index = /* html */`
   <section>
@@ -39,14 +39,6 @@ export function indexTemplate(gameevents) {
       <li><a href="leikir.html">Seinustu leikir</a></li>
       <li><a href="stada.html">Staðan í deildinni</a></li>
     </ul>
-
-    <h3>
-        ${
-          gameevents.map((item) =>
-          `<li>${item}</li>\n`
-          )
-          .join('')}
-    </h3>
   </section>`;
   return template(title, index);
 }
