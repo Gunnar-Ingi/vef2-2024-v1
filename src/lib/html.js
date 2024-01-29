@@ -17,7 +17,9 @@ export function template(title, content) {
   </head>
   <body>
     <div class="container">
+    <div class="offset-3 col col-6">
      <h1>${title}</h1>
+    </div>
      <div class="offset-3 col col-6">
         <h2>
           ${
@@ -90,9 +92,11 @@ export function leikirTemplate(content) {
       ${
           gameIndex
           .map((item) =>
-          `<p>results:<p>\n
+          `\n
+          &nbsp
            <li>dagsetning: ${item.date}</li>\n
-           <li>${item.games.map((inner) => `<li>${Object.values(inner.home)} ${Object.values(inner.away)}</li>\n`).join('')}</li>\n
+           &nbsp
+           ${item.games.map((inner) => `<li>${Object.values(inner.home)} ${Object.values(inner.away)}</li>\n`).join('')}
            `
            )
           .join('')}
