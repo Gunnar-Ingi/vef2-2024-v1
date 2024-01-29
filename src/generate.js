@@ -98,6 +98,7 @@ async function main() {
   const leikirFilename = join(OUTPUT_DIR, 'leikir.html');
   await writeFile(leikirFilename, leikirHTML);
 
+
 }
 
 main().catch((error) => {
