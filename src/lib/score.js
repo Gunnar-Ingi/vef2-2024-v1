@@ -5,7 +5,7 @@
  * @returns array of objects with teams and their score
  */
 export function calculateStandings(data, teams) {
-  data.forEach((item) => item.games.forEach((inner) => console.warn(inner)));
+  // data.forEach((item) => item.games.forEach((inner) => console.warn(inner)));
 
   return 0;
 }

@@ -27,7 +27,6 @@ async function main() {
 
   for await (const file of files) {
     if (file.indexOf('teams') < 0) {
-      console.warn('no teams detected');
       continue;
     }
 
