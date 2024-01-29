@@ -24,6 +24,25 @@ async function main() {
 
   const gameList = [];
 
+  const teamsList = [];
+
+  for await (const file of files) {
+    if (file.indexOf('teams') < 0) {
+      console.warn('no teams detected');
+      continue;
+    }
+
+    const teamFile = await readFile(file);
+
+    if (!teamFile) {
+      continue;
+    }
+
+    const teamData = parseTeamsJson(teamFile);
+
+    teamsList.push(teamData);
+  }
+
   for await (const file of files) {
     if (file.indexOf('gameday') < 0) {
       continue;
@@ -58,7 +77,13 @@ async function main() {
           .join('')}
     */
 
-      const calculatedStandings = 'calculateStandings(data)';
+          // console.warn(teamsList);
+          // console.warn(typeof teamsList);
+          // console.warn(gameList);
+          // console.warn(gameList[3].games[1].home.score);
+
+
+      const calculatedStandings = calculateStandings(gameList, teamsList);
 
 
   await writeFile(join(OUTPUT_DIR, 'index.html'), indexTemplate(), {

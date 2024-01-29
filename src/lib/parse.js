@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {object} data with team list
+ * @returns object that is easier to work with.
+ */
 export function parseTeamsJson(data) {
 
   if (!data) {
@@ -50,6 +55,11 @@ export function parseGames(data) {
   return parsed;
 }
 
+/**
+ * parses for a date
+ * @param {object} data contains date
+ * @returns date properties of an object.
+ */
 export function parseDateJson(data) {
   if (!data) {
     console.warn('NO DATA DETECTED');

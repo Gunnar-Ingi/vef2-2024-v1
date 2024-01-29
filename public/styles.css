@@ -1,3 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --max-width: 1400px;
+  --columns: 12;
+  --gutter: 30px;
+  --offset: 20px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--gutter);
+
+  width: calc(100% - (2 * var(--offset)));
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.col-12 {
+  grid-column-end: span 12;
+}
+
+.col-6 {
+  grid-column-end: span 6;
+}
+
+.col-3 {
+  grid-column-end: span 3;
+}
+
+.offset-3 {
+  grid-column-start: 4;
+}
+
+.box {
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  padding: 1rem;
+  border: 1px solid #000;
+}
+
+:root {
+  --grid-color: rgb(34 181 210);
+  --grid-repeating-width: calc(100% / var(--columns));
+  --grid-column-width: calc((100% / var(--columns)) - var(--gutter));
+  --grid-background-width: calc(100% + var(--gutter));
+  --grid-background-columns: repeating-linear-gradient(
+    to right,
+    var(--grid-color),
+    var(--grid-color) var(--grid-column-width),
+    transparent var(--grid-column-width),
+    transparent var(--grid-repeating-width)
+  );
+}
+
 html {
-  /* ... */
+  position: relative;
+}
+
+html::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: calc(100% - (2 * var(--offset)));
+  max-width: var(--max-width);
+  min-height: 100vh;
+  background-image: var(--grid-background-columns);
+  background-size: var(--grid-background-width) 100%;
+  z-index: 1000;
+  pointer-events: none;
 }

@@ -1,4 +1,11 @@
+/**
+ * Creates a list with teams and their score.
+ * @param {object} data contains score from games
+ * @param {object} teams list of teams in the league.
+ * @returns array of objects with teams and their score
+ */
+export function calculateStandings(data, teams) {
+  data.forEach((item) => item.games.forEach((inner) => console.warn(inner)));
 
-export function calculateStandings(data) {
-  return data.length;
+  return 0;
 }

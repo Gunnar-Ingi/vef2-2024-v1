@@ -1,6 +1,6 @@
 /**
  *
- * @param {element} table
+ *
  * @param {HTMLElement} target
  */
 function sortTable(table, target) {
@@ -35,8 +35,6 @@ function sortTable(table, target) {
   });
 
   target.dataset.order = isDescending ? 'asc' : 'desc';
-  const button = target.querySelector('button');
-  button.textContent = isDescending ? '↑' : '↓';
 }
 
 function makeTableSortable(table) {
@@ -55,8 +53,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (table) {
     makeTableSortable(table);
-
-    // Sort by course number by default
-    sortTable(table, table.querySelector('thead tr th:nth-child(1)'));
   }
 });

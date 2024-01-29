@@ -12,12 +12,21 @@ export function template(title, content) {
   <head>
     <meta charset="utf-8">
     <title>${title}</title>
-    <link rel="stylesheet" href="./public/styles.css">
+    <link rel="stylesheet" href="../public/styles.css">
     <script type="module" src="./public/scripts.js"></script>
   </head>
-  <body> <h1>${title}<h2>${
-    content
-  }</body>
+  <body>
+    <div class="container">
+     <h1>${title}</h1>
+     <div class="offset-3 col col-6">
+        <h2>
+          ${
+          content
+          }
+        </h2>
+      </div>
+    </div>
+  </body>
 </html>`;
 }
 
@@ -25,7 +34,7 @@ export function template(title, content) {
 
 /**
  * Generate a HTML string for the index page.
- * @param {Array} gameevents list of dates for games
+ *
  * @returns {string} HTML string representing the index page
  */
 
@@ -39,6 +48,10 @@ export function indexTemplate() {
       <li><a href="leikir.html">Seinustu leikir</a></li>
       <li><a href="stada.html">Staðan í deildinni</a></li>
     </ul>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Aliquam consectetur ac ipsum ac placerat. Suspendisse varius sollicitudin rutrum.
+      Donec sit amet nunc sed erat sodales aliquet. Aliquam venenatis suscipit volutpat.
+      Fusce rhoncus finibus iaculis. </p>
   </section>`;
   return template(title, index);
 }
@@ -78,7 +91,7 @@ export function leikirTemplate(content) {
           gameIndex
           .map((item) =>
           `<p>results:<p>\n
-           <li>${item.date}</li>\n
+           <li>dagsetning: ${item.date}</li>\n
            <li>${item.games.map((inner) => `<li>${Object.values(inner.home)} ${Object.values(inner.away)}</li>\n`).join('')}</li>\n
            `
            )
