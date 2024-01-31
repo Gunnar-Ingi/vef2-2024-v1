@@ -57,6 +57,7 @@ async function main() {
 
     const gamedresult = indexData;
 
+    // @ts-ignore
     if (gamedresult.games !== undefined){
       gameList.push(gamedresult);
     }
@@ -81,7 +82,7 @@ async function main() {
           // console.warn(gameList[3].games[1].home.score);
 
 
-      const calculatedStandings = calculateStandings(gameList, teamsList);
+      const calculatedStandings = calculateStandings();
 
 
   await writeFile(join(OUTPUT_DIR, 'index.html'), indexTemplate(), {

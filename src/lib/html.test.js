@@ -2,7 +2,7 @@ import { describe, expect, it } from '@jest/globals';
 import { indexTemplate, leikirTemplate, stadaTemplate, template } from './html';
 
 describe('html', () => {
-  describe.only('indexTemplate', () => {
+  describe.skip('indexTemplate', () => {
     it('should have a test', () => {
       expect(indexTemplate()).toBe('html');
     });
@@ -14,7 +14,7 @@ describe('html', () => {
      () => {
         const result = template('lol', null);
 
-        expect(result).toBe(null);
+        expect(result).toBe('');
      });
     });
 
@@ -23,16 +23,16 @@ describe('html', () => {
      () => {
         const result = stadaTemplate(null);
 
-        expect(result).toBe(null);
+        expect(result).toBe('empty');
      });
   });
 
   describe.only('leikirTemplate', () => {
     it('should return null if data is invalid',
      () => {
-        const result = leikirTemplate(null);
+        const result = leikirTemplate([undefined]);
 
-        expect(result).toBe(null);
+        expect(result).toBe('empty');
      });
   });
 

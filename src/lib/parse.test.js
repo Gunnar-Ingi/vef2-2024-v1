@@ -13,7 +13,7 @@ describe('parse', () => {
        () => {
           const result = parseGames('asdf');
 
-          expect(result).toBe(null);
+          expect(result).toBe([]);
        });
 
        it('should return null if data is missing date',

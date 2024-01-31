@@ -9,7 +9,7 @@
 export function template(title, content) {
 
   if(!content || !title) {
-    return null;
+    return '';
   }
 
   return /* html */`<!doctype html>
@@ -69,7 +69,7 @@ export function indexTemplate() {
  */
 export function stadaTemplate(standings) {
   if (!standings) {
-    return null;
+    return 'empty';
   }
   const title = 'Boltadeildin-staðan!'
   const standingHtml = standings.toString();
@@ -87,8 +87,8 @@ export function stadaTemplate(standings) {
  * @returns HTML string representing the game page.
  */
 export function leikirTemplate(content) {
-  if(!content) {
-    return null;
+  if(content === undefined || !content) {
+    return 'empty';
   }
   const title = 'Boltadeildin-leikir!'
   // const gamesHtml = content;
