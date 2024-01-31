@@ -7,6 +7,11 @@
  * @returns Full HTML page
  */
 export function template(title, content) {
+
+  if(!content || !title) {
+    return null;
+  }
+
   return /* html */`<!doctype html>
 <html lang="is">
   <head>
@@ -57,8 +62,15 @@ export function indexTemplate() {
   </section>`;
   return template(title, index);
 }
-
+/**
+ *
+ * @param {*} standings
+ * @returns staða html skrá
+ */
 export function stadaTemplate(standings) {
+  if (!standings) {
+    return null;
+  }
   const title = 'Boltadeildin-staðan!'
   const standingHtml = standings.toString();
   const body = /* html */`
@@ -75,6 +87,9 @@ export function stadaTemplate(standings) {
  * @returns HTML string representing the game page.
  */
 export function leikirTemplate(content) {
+  if(!content) {
+    return null;
+  }
   const title = 'Boltadeildin-leikir!'
   // const gamesHtml = content;
   const gameIndex = content;
