@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { parseGames, parseTeamsJson } from './parse';
+import { parseDateJson, parseGames, parseTeamsJson } from './parse';
 
 describe('parse', () => {
   describe('parseTeamsJson', () => {
@@ -19,6 +19,22 @@ describe('parse', () => {
        it('should return null if data is missing date',
        () => {
           const result = parseGames('{"games": []}');
+
+          expect(result).toBe(null);
+       });
+    });
+
+    describe('parseDateJson', () => {
+      it('should return null if data is invalid json',
+       () => {
+          const result = parseDateJson('asdf');
+
+          expect(result).toBe(null);
+       });
+
+       it('should return null if data is missing date',
+       () => {
+          const result = parseDateJson('{"date": []}');
 
           expect(result).toBe(null);
        });
