@@ -4,7 +4,7 @@
  * @param {object} teams list of teams in the league.
  * @returns array of objects with teams and their score
  */
-export function calculateStandings(data, teams) {
+export function calculateStandings() {
   // data.forEach((item) => item.games.forEach((inner) => console.warn(inner)));
 
   return 0;
