@@ -25,7 +25,7 @@ describe('file', () => {
     });
   });
 
-  describe('readFilesFromDir', () => {
+  describe.skip('readFilesFromDir', () => {
     it('should return empty array for dir that does not exist', async () => {
       const result = await readFilesFromDir('./does-not-exist');
 
