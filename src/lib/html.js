@@ -68,7 +68,7 @@ export function indexTemplate() {
  * @returns staða html skrá
  */
 export function stadaTemplate(standings) {
-  if (!standings) {
+  if (standings === null) {
     return 'empty';
   }
   const title = 'Boltadeildin-staðan!'
@@ -93,6 +93,12 @@ export function leikirTemplate(content) {
   const title = 'Boltadeildin-leikir!'
   // const gamesHtml = content;
   const gameIndex = content;
+  if(!gameIndex[0]) {
+    return 'null';
+  }
+  if(!gameIndex[1]) {
+    return 'null';
+  }
   /*
   console.warn(typeof gamesHtml);
   console.warn(Object.getOwnPropertyNames(gamesHtml));

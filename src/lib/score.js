@@ -1,6 +1,6 @@
 
-export function calculateStandings() {
+export function calculateStandings(num) {
   // data.forEach((item) => item.games.forEach((inner) => console.warn(inner)));
 
-  return 0;
+  return num;
 }

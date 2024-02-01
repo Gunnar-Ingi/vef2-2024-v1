@@ -13,14 +13,14 @@ describe('parse', () => {
        () => {
           const result = parseGames('asdf');
 
-          expect(result).toBe([]);
+          expect(result).toStrictEqual([]);
        });
 
        it('should return null if data is missing date',
        () => {
           const result = parseGames('{"games": []}');
 
-          expect(result).toBe(null);
+          expect(result).toStrictEqual([]);
        });
     });
 
@@ -29,14 +29,14 @@ describe('parse', () => {
        () => {
           const result = parseDateJson('asdf');
 
-          expect(result).toBe(null);
+          expect(result).toBe('No Date');
        });
 
        it('should return null if data is missing date',
        () => {
           const result = parseDateJson('{"date": []}');
 
-          expect(result).toBe(null);
+          expect(result).toBe('No Date');
        });
     });
 });

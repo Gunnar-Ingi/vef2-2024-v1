@@ -82,7 +82,7 @@ async function main() {
           // console.warn(gameList[3].games[1].home.score);
 
 
-      const calculatedStandings = calculateStandings();
+      const calculatedStandings = calculateStandings(0);
 
 
   await writeFile(join(OUTPUT_DIR, 'index.html'), indexTemplate(), {
