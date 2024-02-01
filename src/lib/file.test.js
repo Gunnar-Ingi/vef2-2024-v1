@@ -45,10 +45,5 @@ describe('file', () => {
 
       expect(result).toEqual(null);
     });
-
-    it.skip('should return content of known file that does exist', async () => {
-      const result = await readFile(`${testDir}/1`);
-      expect(result).toEqual('asdf');
-    });
   });
 });
